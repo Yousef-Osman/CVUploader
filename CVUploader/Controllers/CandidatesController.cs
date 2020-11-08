@@ -51,16 +51,13 @@ namespace CVUploader.Controllers
                     newImage.Save(imagePath);
                 }
 
-                //var stream = new FileStream(imagePath, FileMode.Create);
-                //await candidate.Image.CopyToAsync(stream);
-
                 //Dealing with file
                 string ResumesFolder = Path.Combine(_webHostEnvironment.WebRootPath, "resumes");
                 var fileName = Guid.NewGuid() + "_" + candidate.Resume.FileName;
                 string filePath = Path.Combine(ResumesFolder, fileName);
 
-                var stream2 = new FileStream(filePath, FileMode.Create);
-                await candidate.Resume.CopyToAsync(stream2);
+                var stream = new FileStream(filePath, FileMode.Create);
+                await candidate.Resume.CopyToAsync(stream);
 
                 //creating the candidate object
                 var newCandidate = new Candidate()
