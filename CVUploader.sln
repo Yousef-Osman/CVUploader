@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30204.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CVUploader", "CVUploader\CVUploader.csproj", "{0E24C257-C945-476F-A50F-0ECC04144256}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0E24C257-C945-476F-A50F-0ECC04144256}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E24C257-C945-476F-A50F-0ECC04144256}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E24C257-C945-476F-A50F-0ECC04144256}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E24C257-C945-476F-A50F-0ECC04144256}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0497F4ED-A060-4835-894F-6C62156D77F9}
+	EndGlobalSection
+EndGlobal
