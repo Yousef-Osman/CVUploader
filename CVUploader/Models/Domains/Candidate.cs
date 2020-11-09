@@ -20,8 +20,8 @@ namespace CVUploader.Models.Domains
         [Required]
         public string Address { get; set; }
         [Required]
-        public string ImagePath { get; set; }
+        public string ImageTitle { get; set; }
         [Required]
-        public string FilePath { get; set; }
+        public string FileName { get; set; }
     }
 }

@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using CVUploader.Models.Domains;
 using CVUploader.Models.ViewModels;
+using CVUploader.Repositoris;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,10 +11,13 @@ namespace CVUploader.Controllers
 {
     public class CandidatesController : Controller
     {
+        private readonly ICandidateRepository _candidateRepository;
         private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public CandidatesController(IWebHostEnvironment webHostEnvironment)
+        public CandidatesController(ICandidateRepository candidateRepository,
+                                    IWebHostEnvironment webHostEnvironment)
         {
+            _candidateRepository = candidateRepository;
             _webHostEnvironment = webHostEnvironment;
         }
         public IActionResult Index()
@@ -36,30 +37,10 @@ namespace CVUploader.Controllers
         {
             if (ModelState.IsValid)
             {
-                //Dealing with image
-                string imagesFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images/candidateImages");
-                var imageTitle = Guid.NewGuid() + "_" + candidate.Image.FileName;
-                string imagePath = Path.Combine(imagesFolder, imageTitle);
+                var imageTitle = _candidateRepository.AddImage(candidate.Image, _webHostEnvironment);
 
-                int width = 256, height = 256;
-                Image image = Image.FromStream(candidate.Image.OpenReadStream(), true, true);
-                var newImage = new Bitmap(width, height);
+                var fileName = await _candidateRepository.AddResumeAsync(candidate.Resume, _webHostEnvironment);
 
-                using (var graphics = Graphics.FromImage(newImage))
-                {
-                    graphics.DrawImage(image, 0, 0, width, height);
-                    newImage.Save(imagePath);
-                }
-
-                //Dealing with file
-                string ResumesFolder = Path.Combine(_webHostEnvironment.WebRootPath, "resumes");
-                var fileName = Guid.NewGuid() + "_" + candidate.Resume.FileName;
-                string filePath = Path.Combine(ResumesFolder, fileName);
-
-                var stream = new FileStream(filePath, FileMode.Create);
-                await candidate.Resume.CopyToAsync(stream);
-
-                //creating the candidate object
                 var newCandidate = new Candidate()
                 {
                     FullName = candidate.FullName,
@@ -67,9 +48,12 @@ namespace CVUploader.Controllers
                     City = candidate.City,
                     Area = candidate.Area,
                     Address = candidate.Address,
-                    ImagePath = imagePath,
-                    FilePath = filePath
+                    ImageTitle = imageTitle,
+                    FileName = fileName
                 };
+
+                //await _candidateRepository.AddAsync(newCandidate);
+                //await _candidateRepository.SaveAllAsync();
             }
 
             return View();

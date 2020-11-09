@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Candidate>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+    <section>
+        <h3>Candidate List</h3>
+        @if (Model.Count() > 0)
+        {
+            @foreach (var candidate in Model)
+            {
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="~/images/candidateImages/@candidate.ImageTitle" alt="@candidate.FullName">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+                @*<iframe src="~/resumes/@candidate.FileName" class="w-100" style="height: 800px;"></iframe>*@
+                <embed src="~/resumes/@candidate.FileName" class="w-100" style="height: 800px;" />
+                @*<object data="~/resumes/@candidate.FileName" class="w-100" style="height: 800px;"></object>*@
+            }
+        }
+    </section>
+
