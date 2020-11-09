@@ -54,8 +54,15 @@ namespace CVUploader.Controllers
 
                 //await _candidateRepository.AddAsync(newCandidate);
                 //await _candidateRepository.SaveAllAsync();
+
+                return View(nameof(Details), newCandidate);
             }
 
+            return View();
+        }
+
+        public IActionResult Details()
+        {
             return View();
         }
     }

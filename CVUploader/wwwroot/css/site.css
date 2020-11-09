@@ -69,3 +69,25 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+.bg-purple {
+    background-color: #5f19f5;
+}
+
+.bg-light-gray {
+    background-color: #f4f8fb;
+}
+
+.text-purple {
+    color: #5f19f5;
+}
+
+.bg-pink {
+    background-color: #fa476e;
+}
+
+.custom-shadow {
+    -webkit-box-shadow: 0 5px 20px -5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 20px -5px rgba(0, 0, 0, 0.2);
+    copyright
+}
