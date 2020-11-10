@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using CVUploader.Models.Domains;
 using CVUploader.Models.ViewModels;
 using CVUploader.Repositoris;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CVUploader.Controllers
 {
+    [Authorize]
     public class DashboardController : Controller
     {
         private readonly ICandidateRepository _candidateRepository;
@@ -47,6 +49,7 @@ namespace CVUploader.Controllers
                     var newCandidate = new Candidate()
                     {
                         FullName = candidate.FullName,
+                        JobTitle = candidate.JobTitle,
                         Age = candidate.Age,
                         City = candidate.City,
                         Area = candidate.Area,

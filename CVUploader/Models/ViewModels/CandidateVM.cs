@@ -16,6 +16,10 @@ namespace CVUploader.Models.ViewModels
         public string FullName { get; set; }
 
         [Required]
+        [DisplayName("Job Title")]
+        public string JobTitle { get; set; }
+
+        [Required]
         [Range(1, 100, ErrorMessage = "Please enter a valid Age")]
         public int Age { get; set; }
 

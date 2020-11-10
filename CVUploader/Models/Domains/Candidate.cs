@@ -12,6 +12,8 @@ namespace CVUploader.Models.Domains
         [Required]
         public string FullName { get; set; }
         [Required]
+        public string JobTitle { get; set; }
+        [Required]
         public int Age { get; set; }
         [Required]
         public string City { get; set; }

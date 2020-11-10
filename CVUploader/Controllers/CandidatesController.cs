@@ -45,6 +45,7 @@ namespace CVUploader.Controllers
                     var newCandidate = new Candidate()
                     {
                         FullName = candidate.FullName,
+                        JobTitle = candidate.JobTitle,
                         Age = candidate.Age,
                         City = candidate.City,
                         Area = candidate.Area,
