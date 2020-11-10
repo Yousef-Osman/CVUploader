@@ -1,0 +1,66 @@
+﻿@model Candidate
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section>
+    @if (Model != null)
+    {
+        <div class="row">
+            <div class="col-md-3">
+
+                <!-- Profile Image -->
+                <div class="card card-primary card-outline">
+                    <div class="card-body">
+                        <div class="text-center py-2">
+                            <img class="profile-user-img img-fluid img-circle"
+                                 src="~/images/candidateImages/@Model.ImageTitle"
+                                 alt="@Model.FullName">
+                        </div>
+
+                        <h3 class="profile-username text-center">@Model.FullName</h3>
+
+                        <p class="text-muted text-center">Software Engineer</p>
+
+                        <ul class="list-group list-group-unbordered mb-3">
+                            <li class="list-group-item">
+                                <i class="fas fa-calendar-check mr-1"></i>
+                                <b>Age: </b> &nbsp;
+                                <span>@Model.Age Years</span>
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-map-marker-alt mr-1"></i>
+                                <b>City: </b> &nbsp;
+                                <span>@Model.City</span>
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-map-marker-alt mr-1"></i>
+                                <b>Area: </b> &nbsp;
+                                <span>@Model.Area</span>
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-home mr-1"></i>
+                                <b>Address: </b> &nbsp;
+                                <span>@Model.Address</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="card card-primary card-outline">
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="active tab-pane" id="activity">
+                                <embed src="~/resumes/@Model.FileName" class="w-100" style="height: 800px;" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</section>
+

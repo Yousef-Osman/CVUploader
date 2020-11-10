@@ -37,32 +37,33 @@ namespace CVUploader.Controllers
         {
             if (ModelState.IsValid)
             {
-                var imageTitle = _candidateRepository.AddImage(candidate.Image, _webHostEnvironment);
-
-                var fileName = await _candidateRepository.AddResumeAsync(candidate.Resume, _webHostEnvironment);
-
-                var newCandidate = new Candidate()
+                try
                 {
-                    FullName = candidate.FullName,
-                    Age = candidate.Age,
-                    City = candidate.City,
-                    Area = candidate.Area,
-                    Address = candidate.Address,
-                    ImageTitle = imageTitle,
-                    FileName = fileName
-                };
+                    var imageTitle = _candidateRepository.AddImage(candidate.Image, _webHostEnvironment);
+                    var fileName = await _candidateRepository.AddResumeAsync(candidate.Resume, _webHostEnvironment);
 
-                //await _candidateRepository.AddAsync(newCandidate);
-                //await _candidateRepository.SaveAllAsync();
+                    var newCandidate = new Candidate()
+                    {
+                        FullName = candidate.FullName,
+                        Age = candidate.Age,
+                        City = candidate.City,
+                        Area = candidate.Area,
+                        Address = candidate.Address,
+                        ImageTitle = imageTitle,
+                        FileName = fileName
+                    };
 
-                return View(nameof(Details), newCandidate);
+                    await _candidateRepository.AddAsync(newCandidate);
+                    await _candidateRepository.SaveAllAsync();
+
+                    return View("Details", newCandidate);
+                }
+                catch (Exception)
+                {
+                    return View();
+                }
             }
 
-            return View();
-        }
-
-        public IActionResult Details()
-        {
             return View();
         }
     }
